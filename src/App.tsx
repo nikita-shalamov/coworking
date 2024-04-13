@@ -1,12 +1,14 @@
-import CoworkingList from "./components/CoworkingList";
-import "./styles/style.sass";
+import CoworkingList from "./components/CoworkingList"
+import Header from "./components/Header"
+import "./styles/style.sass"
 
 function App() {
-  return (
-    <>
-      <CoworkingList />
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <CoworkingList />
+        </>
+    )
 }
 
-export default App;
+export default App
