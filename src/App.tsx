@@ -1,12 +1,16 @@
-import CoworkingList from "./components/CoworkingList";
-import "./styles/style.sass";
+// import CoworkingList from "./components/CoworkingList"
+import { Login } from "./routes/login.lazy"
+import { SignUp } from "./routes/signup.lazy"
+import "./styles/style.sass"
 
 function App() {
-  return (
-    <>
-      <CoworkingList />
-    </>
-  );
+    return (
+        <>
+            {/* <CoworkingList /> */}
+            <Login />
+            {/* <SignUp /> */}
+        </>
+    )
 }
 
-export default App;
+export default App
