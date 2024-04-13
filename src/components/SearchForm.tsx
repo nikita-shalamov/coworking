@@ -1,7 +1,5 @@
 import { Button, Input, Select, Space } from "antd"
 
-const { Search } = Input
-
 export default function SearchForm() {
     const onChange = (value: string) => {
         console.log(`selected ${value}`)
