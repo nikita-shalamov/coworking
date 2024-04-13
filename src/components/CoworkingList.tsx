@@ -8,18 +8,21 @@ export default function CoworkingList() {
             image: "../images/coworkings/image.png",
             price: 199,
             link: "https://t.me/nikita_frl",
+            rating: 4,
         },
         {
             title: "Коворкинг 1",
             image: "../images/coworkings/image.png",
             price: 200,
             link: "https://t.me/nikita_frl",
+            rating: 5,
         },
         {
             title: "Коворкинг 1",
             image: "../images/coworkings/image.png",
             price: 201,
             link: "https://t.me/nikita_frl",
+            rating: 2,
         },
     ]
     return (
@@ -31,7 +34,7 @@ export default function CoworkingList() {
                         <Filters />
                         <div className="coworking_list__items">
                             {coworkings.map(coworking => {
-                                return <CoworkingCard title={coworking.title} image={coworking.image} price={coworking.price} link={coworking.link} />
+                                return <CoworkingCard title={coworking.title} image={coworking.image} price={coworking.price} link={coworking.link} rating={coworking.rating} />
                             })}
                         </div>
                     </div>
