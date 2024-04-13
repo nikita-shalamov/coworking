@@ -23,8 +23,8 @@ export default function CoworkingCard({ title, image, price, link, rating }: cow
     return (
         <div className="coworking_card">
             <div className="coworking_card__wrapper">
-                <Badge className="coworking_raiting" count={{ rating } + " / 5"} style={{ backgroundColor: backgroundColorRating(rating) }} />
-                <div className="coworking_card__col">
+                <Badge className="coworking_raiting" count={"Рейтинг: " + rating + " / 5"} style={{ backgroundColor: backgroundColorRating(rating) }} />
+                <div className="coworking_card__col coworking_card__col-1">
                     <div className="coworking_card-image">
                         <img src={image} alt={title} />
                     </div>

@@ -1,5 +1,6 @@
 import CoworkingCard from "./CoworkingCard"
 import Filters from "./Filters"
+import SearchForm from "./SearchForm"
 
 export default function CoworkingList() {
     const coworkings = [
@@ -30,9 +31,10 @@ export default function CoworkingList() {
             <div className={"coworking_list"}>
                 <div className={"container"}>
                     <div className="coworking_list__wrapper">
-                        <h1 className={"coworking_list__title title"}>Список коворкингов</h1>
                         <Filters />
                         <div className="coworking_list__items">
+                            <SearchForm />
+                            <h1 className={"coworking_list__title title"}>Список коворкингов</h1>
                             {coworkings.map(coworking => {
                                 return <CoworkingCard title={coworking.title} image={coworking.image} price={coworking.price} link={coworking.link} rating={coworking.rating} />
                             })}
