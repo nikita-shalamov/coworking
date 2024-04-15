@@ -1,7 +1,8 @@
+import { createLazyFileRoute } from "@tanstack/react-router"
 import { Button, Input } from "antd"
 
-export function Login() {
-    return (
+export const Route = createLazyFileRoute("/login")({
+    component: () => (
         <div className="login">
             <div className="login__wrapper">
                 <h1 className="login__title">Войти</h1>
@@ -18,5 +19,5 @@ export function Login() {
                 <p className="login__subbutton">Зарегистрироваться</p>
             </div>
         </div>
-    )
-}
+    ),
+})

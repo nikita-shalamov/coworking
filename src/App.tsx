@@ -1,18 +1,19 @@
-// import CoworkingList from "./components/CoworkingList"
-import CoworkingList from "./components/CoworkingList"
-import Header from "./components/Header"
-// import { Login } from "./routes/login.lazy"
-// import { SignUp } from "./routes/signup.lazy"
+import { RouterProvider, createRouter } from "@tanstack/react-router"
+import { routeTree } from "./routeTree.gen"
 import "./styles/style.sass"
+
+const router = createRouter({ routeTree })
+
+declare module '@tanstack/react-router' {
+    interface Register {
+      router: typeof router
+    }
+  }
 
 function App() {
     return (
         <>
-            {/* <Login /> */}
-            {/* <SignUp /> */}
-            <Header />
-            <CoworkingList />
-            {/* <Route /> */}
+            <RouterProvider router={router} />
         </>
     )
 }
