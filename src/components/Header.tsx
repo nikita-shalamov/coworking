@@ -16,6 +16,35 @@ export default function Header() {
         }
     }, [window.location.pathname])
 
+    const profile = false
+
+    function checkProfile(profile: boolean) {
+        if (!profile) {
+            return (
+                <div className="header__auth">
+                    <Link to="/signup">
+                        <Button className="header__reg" type="primary" size="large">
+                            Регистрация
+                        </Button>
+                    </Link>
+                    <Link to="/login">
+                        <Button className="header__signin" size="large">
+                            Вход
+                        </Button>
+                    </Link>
+                </div>
+            )
+        } else {
+            return (
+                <div className="header__auth">
+                    <Link to="/profile">
+                        <div className="header__profile">Profile</div>
+                    </Link>
+                </div>
+            )
+        }
+    }
+
     // Проверяем первый сегмент пути для определения маршрута
     if (activate) {
         return (
@@ -36,18 +65,7 @@ export default function Header() {
                                 Для бизнеса
                             </Link>
                         </div>
-                        <div className="header__auth">
-                            <Link to="/signup">
-                                <Button className="header__reg" type="primary" size="large">
-                                    Регистрация
-                                </Button>
-                            </Link>
-                            <Link to="/login">
-                                <Button className="header__signin" size="large">
-                                    Вход
-                                </Button>
-                            </Link>
-                        </div>
+                        {checkProfile(profile)}
                     </div>
                 </div>
             </div>
