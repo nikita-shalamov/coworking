@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router"
 import { Button } from "antd"
 
 export default function Header() {
@@ -6,9 +7,9 @@ export default function Header() {
             <div className="container">
                 <div className="header__wrapper">
                     <div className="header__menu">
-                        <a href="#" className="header__item">
+                        <Link to="/" className="header__item">
                             Главная
-                        </a>
+                        </Link>
                         <a href="#" className="header__item">
                             Поддержка
                         </a>
