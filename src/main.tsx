@@ -1,10 +1,10 @@
+import { antdConfig } from "@/config/antd.ts";
+import { routeTree } from "@/routeTree.gen.ts";
+import "@/styles/style.sass";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { ConfigProvider } from "antd";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ConfigProvider } from "antd";
-import { antdConfig } from "./config/antd.ts";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen.ts";
-import "./styles/style.sass"
 
 const router = createRouter({ routeTree })
 

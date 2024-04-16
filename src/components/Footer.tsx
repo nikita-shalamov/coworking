@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from "@tanstack/react-router"
 import { useEffect, useState } from "react"
+
+import { Link } from "@tanstack/react-router"
 
 import SocialMedia from "./SocialMedia"
 

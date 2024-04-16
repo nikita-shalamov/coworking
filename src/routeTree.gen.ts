@@ -13,85 +13,99 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as RootImport } from './routes/_root'
+import { Route as AuthImport } from './routes/_auth'
 
 // Create Virtual Routes
 
-const SupportLazyImport = createFileRoute('/support')()
-const SignupLazyImport = createFileRoute('/signup')()
-const LoginpageLazyImport = createFileRoute('/loginpage')()
-const LoginLazyImport = createFileRoute('/login')()
-const ForbusinessLazyImport = createFileRoute('/forbusiness')()
-const CoworkingsLazyImport = createFileRoute('/coworkings')()
-const IndexLazyImport = createFileRoute('/')()
+const RootIndexLazyImport = createFileRoute('/_root/')()
+const RootSupportLazyImport = createFileRoute('/_root/support')()
+const RootForbusinessLazyImport = createFileRoute('/_root/forbusiness')()
+const RootCoworkingsLazyImport = createFileRoute('/_root/coworkings')()
+const AuthSignupLazyImport = createFileRoute('/_auth/signup')()
+const AuthLoginLazyImport = createFileRoute('/_auth/login')()
 
 // Create/Update Routes
 
-const SupportLazyRoute = SupportLazyImport.update({
-  path: '/support',
+const RootRoute = RootImport.update({
+  id: '/_root',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/support.lazy').then((d) => d.Route))
+} as any)
 
-const SignupLazyRoute = SignupLazyImport.update({
-  path: '/signup',
+const AuthRoute = AuthImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/signup.lazy').then((d) => d.Route))
+} as any)
 
-const LoginpageLazyRoute = LoginpageLazyImport.update({
-  path: '/loginpage',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/loginpage.lazy').then((d) => d.Route))
-
-const LoginLazyRoute = LoginLazyImport.update({
-  path: '/login',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
-
-const ForbusinessLazyRoute = ForbusinessLazyImport.update({
-  path: '/forbusiness',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/forbusiness.lazy').then((d) => d.Route))
-
-const CoworkingsLazyRoute = CoworkingsLazyImport.update({
-  path: '/coworkings',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/coworkings.lazy').then((d) => d.Route))
-
-const IndexLazyRoute = IndexLazyImport.update({
+const RootIndexLazyRoute = RootIndexLazyImport.update({
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+  getParentRoute: () => RootRoute,
+} as any).lazy(() => import('./routes/_root/index.lazy').then((d) => d.Route))
+
+const RootSupportLazyRoute = RootSupportLazyImport.update({
+  path: '/support',
+  getParentRoute: () => RootRoute,
+} as any).lazy(() => import('./routes/_root/support.lazy').then((d) => d.Route))
+
+const RootForbusinessLazyRoute = RootForbusinessLazyImport.update({
+  path: '/forbusiness',
+  getParentRoute: () => RootRoute,
+} as any).lazy(() =>
+  import('./routes/_root/forbusiness.lazy').then((d) => d.Route),
+)
+
+const RootCoworkingsLazyRoute = RootCoworkingsLazyImport.update({
+  path: '/coworkings',
+  getParentRoute: () => RootRoute,
+} as any).lazy(() =>
+  import('./routes/_root/coworkings.lazy').then((d) => d.Route),
+)
+
+const AuthSignupLazyRoute = AuthSignupLazyImport.update({
+  path: '/signup',
+  getParentRoute: () => AuthRoute,
+} as any).lazy(() => import('./routes/_auth/signup.lazy').then((d) => d.Route))
+
+const AuthLoginLazyRoute = AuthLoginLazyImport.update({
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any).lazy(() => import('./routes/_auth/login.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      preLoaderRoute: typeof IndexLazyImport
+    '/_auth': {
+      preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
-    '/coworkings': {
-      preLoaderRoute: typeof CoworkingsLazyImport
+    '/_root': {
+      preLoaderRoute: typeof RootImport
       parentRoute: typeof rootRoute
     }
-    '/forbusiness': {
-      preLoaderRoute: typeof ForbusinessLazyImport
-      parentRoute: typeof rootRoute
+    '/_auth/login': {
+      preLoaderRoute: typeof AuthLoginLazyImport
+      parentRoute: typeof AuthImport
     }
-    '/login': {
-      preLoaderRoute: typeof LoginLazyImport
-      parentRoute: typeof rootRoute
+    '/_auth/signup': {
+      preLoaderRoute: typeof AuthSignupLazyImport
+      parentRoute: typeof AuthImport
     }
-    '/loginpage': {
-      preLoaderRoute: typeof LoginpageLazyImport
-      parentRoute: typeof rootRoute
+    '/_root/coworkings': {
+      preLoaderRoute: typeof RootCoworkingsLazyImport
+      parentRoute: typeof RootImport
     }
-    '/signup': {
-      preLoaderRoute: typeof SignupLazyImport
-      parentRoute: typeof rootRoute
+    '/_root/forbusiness': {
+      preLoaderRoute: typeof RootForbusinessLazyImport
+      parentRoute: typeof RootImport
     }
-    '/support': {
-      preLoaderRoute: typeof SupportLazyImport
-      parentRoute: typeof rootRoute
+    '/_root/support': {
+      preLoaderRoute: typeof RootSupportLazyImport
+      parentRoute: typeof RootImport
+    }
+    '/_root/': {
+      preLoaderRoute: typeof RootIndexLazyImport
+      parentRoute: typeof RootImport
     }
   }
 }
@@ -99,13 +113,13 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
-  IndexLazyRoute,
-  CoworkingsLazyRoute,
-  ForbusinessLazyRoute,
-  LoginLazyRoute,
-  LoginpageLazyRoute,
-  SignupLazyRoute,
-  SupportLazyRoute,
+  AuthRoute.addChildren([AuthLoginLazyRoute, AuthSignupLazyRoute]),
+  RootRoute.addChildren([
+    RootCoworkingsLazyRoute,
+    RootForbusinessLazyRoute,
+    RootSupportLazyRoute,
+    RootIndexLazyRoute,
+  ]),
 ])
 
 /* prettier-ignore-end */

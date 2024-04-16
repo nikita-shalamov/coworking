@@ -1,0 +1,1 @@
+import{j as e,c as a}from"./index-DIHPyctc.js";function i(){return e.jsx("div",{className:"main_page",children:e.jsx("div",{className:"container",children:e.jsx("div",{className:"main_page__title",children:"Главная страница"})})})}const s=a("/")({component:()=>e.jsx(i,{})});export{s as Route};

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 interface SocialMediaProps {
     links: {
-        vk: string
-        tg: string
+        vk: string,
+        tg: string,
     };
 }
 
