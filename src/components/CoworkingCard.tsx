@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from "react"
 
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Badge, Button, Carousel } from "antd"
+import { CarouselRef } from "antd/es/carousel"
 
 interface coworkingCardProps {
     title: string;
-    image: string;
+    images: string[];
     price: number;
     link: string;
     rating: number;
@@ -15,7 +15,8 @@ interface coworkingCardProps {
     address: string;
 }
 
-export default function CoworkingCard({ title, image, price, link, rating, metro, address }: coworkingCardProps) {
+export default function CoworkingCard({ title, images, price, link, rating, metro, address }: coworkingCardProps) {
+    // такие функции лучше выносить в отдельную папку, она скорее всего будет переиспользоваться в разных местах
     const backgroundColorRating = (rating: number) => {
         if (rating <= 4 && rating >= 3) {
             return "#faad14"
@@ -36,7 +37,7 @@ export default function CoworkingCard({ title, image, price, link, rating, metro
         background: "#364d79",
     }
 
-    const ref = useRef<any>(null)
+    const ref = useRef<CarouselRef>(null)
 
     return (
         <div className="coworking_card">
@@ -45,15 +46,11 @@ export default function CoworkingCard({ title, image, price, link, rating, metro
                 <div className="coworking_card__col coworking_card__col-1">
                     <div className="coworking_card__carousel">
                         <Carousel ref={ref}>
-                            <div className="coworking_card-image" style={contentStyle}>
-                                <img src={image} alt={title} />
-                            </div>
-                            <div className="coworking_card-image" style={contentStyle}>
-                                <img src={image} alt={title} />
-                            </div>
-                            <div className="coworking_card-image" style={contentStyle}>
-                                <img src={image} alt={title} />
-                            </div>
+                            {images.map(el => (
+                                <div className="coworking_card-image" style={contentStyle}>
+                                    <img src={el} alt={title} />
+                                </div>
+                            ))}
                         </Carousel>
                         <div
                             className="coworking_card__arrow_prev"

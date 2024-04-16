@@ -15,6 +15,7 @@ export default function Footer() {
     useEffect(() => {
         const path = window.location.pathname
         const segments = path.split("/")
+        console.log(path)
         if (segments[1] === "login" || segments[1] === "signup") {
             setActivate(false)
         } else {
