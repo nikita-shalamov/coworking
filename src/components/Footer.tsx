@@ -11,7 +11,7 @@ export default function Footer() {
         tg: "https://telegram.org",
     }
 
-    const [activate, setActivate] = useState(true)
+    const [activate, setActivate] = useState(false)
     useEffect(() => {
         const path = window.location.pathname
         const segments = path.split("/")
@@ -19,7 +19,7 @@ export default function Footer() {
         if (segments[1] === "login" || segments[1] === "signup") {
             setActivate(false)
         } else {
-            setActivate(true)
+            setActivate(false)
         }
     }, [window.location.pathname])
 
