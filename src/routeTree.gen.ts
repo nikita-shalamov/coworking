@@ -18,6 +18,7 @@ import { Route as AuthImport } from './routes/_auth'
 
 // Create Virtual Routes
 
+const ProfileLazyImport = createFileRoute('/profile')()
 const RootIndexLazyImport = createFileRoute('/_root/')()
 const RootSupportLazyImport = createFileRoute('/_root/support')()
 const RootForbusinessLazyImport = createFileRoute('/_root/forbusiness')()
@@ -26,6 +27,11 @@ const AuthSignupLazyImport = createFileRoute('/_auth/signup')()
 const AuthLoginLazyImport = createFileRoute('/_auth/login')()
 
 // Create/Update Routes
+
+const ProfileLazyRoute = ProfileLazyImport.update({
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/profile.lazy').then((d) => d.Route))
 
 const RootRoute = RootImport.update({
   id: '/_root',
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RootImport
       parentRoute: typeof rootRoute
     }
+    '/profile': {
+      preLoaderRoute: typeof ProfileLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/login': {
       preLoaderRoute: typeof AuthLoginLazyImport
       parentRoute: typeof AuthImport
@@ -120,6 +130,7 @@ export const routeTree = rootRoute.addChildren([
     RootSupportLazyRoute,
     RootIndexLazyRoute,
   ]),
+  ProfileLazyRoute,
 ])
 
 /* prettier-ignore-end */
