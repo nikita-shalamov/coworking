@@ -1,0 +1,78 @@
+.hero
+    @apply mt-28
+    &__wrapper
+        @apply flex justify-between items-start
+    &__col
+        &:nth-child(1)
+            width: 60%
+        &:nth-child(2)
+            width: 40%
+    &__title
+        margin-top: 80px
+        font-weight: 700
+        line-height: 65px
+        word-wrap: break-word
+        font-size: 60px
+        color: rgba(0, 0, 0, 0.80)
+        span
+            color: #1677ff
+    &__arrow_message
+        @apply flex justify-start items-end mt-4 ml-32
+        img
+            @apply mb-8 mr-3
+        &_text
+            width: 223px
+            color: black
+            font-size: 20px
+            font-weight: 600
+            word-wrap: break-word
+    &__button
+        margin-top: 50px
+        border-radius: 20px
+        width: 151px
+        height: 60px
+        font-weight: 300
+        font-size: 16px
+    &__image
+        @apply w-full relative
+        img
+            width: 100%
+            height: auto
+            box-shadow: 0px 4px 40.8px #8C5B2F
+            border-radius: 41px
+            position: relative
+            z-index: 2
+    &__advs
+        width: 349px
+        height: 140px
+        background: white
+        border-radius: 17px
+        border: 1px solid #1677ff
+        box-shadow: -12px 12px 41.9px rgba(0, 2.21, 66.19, 0.24)
+        padding: 27px 0
+        padding-left: 34px
+        display: flex
+        flex-direction: column
+        gap: 10px
+        position: absolute
+        bottom: -31px
+        left: -26px
+        z-index: 3
+    &__adv
+        position: relative
+        font-size: 18px
+        font-weight: 500
+        &::before
+            content: ''
+            width: 10px
+            height: 10px
+            background: #1677ff
+            border-radius: 100%
+            position: absolute
+            top: 6px
+            left: -18px
+
+
+
+
+            
