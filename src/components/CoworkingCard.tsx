@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useState } from "react"
+import { useRef } from "react"
 
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -37,15 +37,6 @@ export default function CoworkingCard({ title, image, price, link, rating, metro
     }
 
     const ref = useRef<any>(null)
-    const [currentIndex, setCurrentIndex] = useState(0)
-
-    const nextSlide = () => {
-        setCurrentIndex(prev => prev + 1)
-    }
-
-    const prevSlide = () => {
-        setCurrentIndex(prev => prev + 1)
-    }
 
     return (
         <div className="coworking_card">
