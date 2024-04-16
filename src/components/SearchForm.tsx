@@ -2,13 +2,42 @@ import { Button, Input, Select, Space } from "antd"
 
 export default function SearchForm() {
     const onChange = (value: string) => {
-        console.log(`selected ${value}`)
+        if (value in citiesWithMetro) {
+            console.log("метро")
+        }
     }
 
     const onSearch = (value: string) => {
         console.log("search:", value)
     }
 
+    const handleChange = (value: string) => {
+        console.log(`selected ${value}`)
+    }
+
+    const options = [
+        { value: "Все услуги", label: "Все услуги" },
+        { value: "Рабочее место", label: "Рабочее место" },
+        { value: "Офис", label: "Офис" },
+        { value: "Переговорка", label: "Переговорка" },
+    ]
+
+    const optionsCities = [
+        {
+            value: "москва",
+            label: "Москва",
+        },
+        {
+            value: "санкт-петербург",
+            label: "Санкт-петербург",
+        },
+        {
+            value: "tom",
+            label: "Tom",
+        },
+    ]
+
+    const citiesWithMetro = ["москва", "санкт-петербург"]
     // Filter `option.label` match the user type `input`
     const filterOption = (input: string, option?: { label: string, value: string }) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
 
@@ -24,22 +53,10 @@ export default function SearchForm() {
                             onChange={onChange}
                             onSearch={onSearch}
                             filterOption={filterOption}
-                            style={{ width: "170px", height: "100%" }}
-                            options={[
-                                {
-                                    value: "jack",
-                                    label: "Jack",
-                                },
-                                {
-                                    value: "lucy",
-                                    label: "Lucy",
-                                },
-                                {
-                                    value: "tom",
-                                    label: "Tom",
-                                },
-                            ]}
+                            style={{ width: "300px", height: "50px" }}
+                            options={optionsCities}
                         />
+                        <Select placeholder="Услуги" defaultValue="Все услуги" optionFilterProp="children" onChange={onChange} style={{ width: "300px", height: "50px" }} options={options} />
                         <Input placeholder="Введите название коворкинга" />
                         <Button type="primary" style={{ width: "150px", height: "100%" }}>
                             Искать

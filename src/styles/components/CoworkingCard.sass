@@ -11,19 +11,31 @@
         border: 1px #c1c1c1 solid
         border-radius: 10px
         &__col
-            width: 100%
-            height: 100%
-            display: flex
-            flex-direction: column
-            justify-content: space-between
-            align-items: center
+            @apply w-full h-full flex flex-col justify-between items-center
             &-1
                 width: 300px
+        &__carousel
+            height: 200px
+            width: 300px
+            position: relative
         &-image
-            width: 100%
-            height: 100%
+            @apply w-full h-full
             img
-                height: 100%
+               height: 100%
+               width: 100%
+        &__arrow
+            &_prev
+                position: absolute
+                top: 50%
+                left: 10px
+                color: #fff
+                cursor: pointer
+            &_next
+                position: absolute
+                top: 50%
+                right: 10px
+                color: #fff
+                cursor: pointer
         &-info
             margin-left: 10px
             width: 100%
@@ -43,19 +55,20 @@
             font-size: 14px
         &-button
             display: block
-            margin-top: 30px
             width: 150px
             margin-right: 15px
             margin-bottom: 15px
             &__wrapper
-                width: 100%
-                display: flex
-                justify-content: flex-end
-                align-items: flex-end
+                @apply w-full flex justify-end items-end
         &__wrapper
-            display: flex
-            justify-content: flex-start
-            align-items: flex-start
-            width: 100%
-            height: 100%
-            position: relative
+            @apply w-full h-full flex justify-start items-start relative
+        &-location
+            @apply flex justify-start items-start mt-3
+            img
+                @apply mr-1
+        &-metro
+            @apply text-xs mr-3
+        &-address
+            @apply text-xs
+        
+
