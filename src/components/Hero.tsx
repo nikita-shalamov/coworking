@@ -10,11 +10,9 @@ export default function Hero() {
                         <div className="hero__title">
                             <span>Забронировать коворкинг</span> стало легче!
                         </div>
-                        <Link to="/coworkings">
-                            <Button className="hero__button" type="primary" size="large">
-                                Выбирать!
-                            </Button>
-                        </Link>
+                        <Button href="/coworkings" className="hero__button" type="primary">
+                            Выбирать!
+                        </Button>
                         <div className="hero__arrow_message">
                             <img src="../images/hero/arrow.svg" alt="" />
                             <div className="hero__arrow_message_text">Ваше идеальное рабочее место тут!</div>
