@@ -39,7 +39,7 @@ const Page = () => {
                                 <div className="coworking_card-info">
                                     <h1 className="coworking_page__title">{data.title}</h1>
                                     <div className="coworking_card-price">Стоимость за час: от {data.price.toFixed(2)}р.</div>
-                                    <div className="coworking_card-options">Безлимитный кофе · Удобные места · Больше окна</div>
+                                    <div className="coworking_card-options">{data.conveniences.join(" · ")}</div>
                                     <div className="coworking_card-location">
                                         <img
                                             width="15"
@@ -61,7 +61,7 @@ const Page = () => {
                             <YMaps>
                                 <Map
                                     defaultState={{
-                                        center: [56.831956, 60.602963],
+                                        center: [data.longitude, data.latitude],
                                         zoom: 16,
                                         controls: ["zoomControl", "fullscreenControl"],
                                     }}
@@ -73,7 +73,7 @@ const Page = () => {
                                         properties={{
                                             balloonContentBody: "Description",
                                         }}
-                                        defaultGeometry={[56.831956, 60.602963]}
+                                        defaultGeometry={[data.longitude, data.latitude]}
                                     />
                                 </Map>
                             </YMaps>

@@ -3,6 +3,7 @@ import { Badge, Button } from "antd";
 
 import { backgroundColorRating } from "@/helpers/backgroundColorRating";
 
+import { useNavigate } from "@tanstack/react-router";
 import FavoriteToggler from "./FavoriteToggler";
 import Galery from "./Galery";
 
@@ -20,15 +21,16 @@ interface CoworkingCardProps {
 }
 
 export default function CoworkingCard({ title, images, price, link, rating, metro, address, conveniences, id, isFavorite }: CoworkingCardProps) {
+    const route = useNavigate({ from: '/coworkings' })
 
     const cardOpen = () => {
-        console.log(5)
+        route({ to: '/coworking/$coworkingId', params: { coworkingId: id.toString() } })
     }
     console.log(321)
 
     return (
         <div className="coworking_card">
-            <div className="coworking_card_click_elem" onClick={cardOpen}></div>
+            <div className="coworking_card_click_elem" onClick={cardOpen} />
             <div className="coworking_card__wrapper">
                 <Badge className="coworking_raiting" count={"Рейтинг: " + rating + " / 5"} style={{ backgroundColor: backgroundColorRating(rating) }} />
                 <Galery images={images} title={title} />
@@ -51,7 +53,7 @@ export default function CoworkingCard({ title, images, price, link, rating, metr
                     </div>
                     <div className="coworking_card-button__wrapper">
                         <FavoriteToggler id={id} defaultIsFavorite={isFavorite} />
-                        <Button className="coworking_card-button" type="primary" href={link}>
+                        <Button className="coworking_card-button" type="primary" onClick={cardOpen}>
                             Забронировать
                         </Button>
                     </div>
