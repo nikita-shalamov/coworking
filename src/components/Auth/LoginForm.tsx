@@ -1,8 +1,8 @@
 import { useRef, useState } from "react"
 
+import { AuthService } from "@/services/AuthService"
 import { useNavigate } from "@tanstack/react-router"
 import { Button, Input } from "antd"
-import axios from "axios"
 
 import { checkAuthData } from "@/helpers/checkAuthFormData"
 
@@ -29,17 +29,10 @@ export const LoginForm = () => {
             const isValidData = checkAuthData(data)
             if (isValidData !== true) return setError(isValidData)
 
-            const response = await axios.post("http://192.168.24.177:5000/auth/login", data)
-
-            localStorage.setItem("accessToken", response.data.access)
-            localStorage.setItem("refreshToken", response.data.refresh)
+            await AuthService.login(data.email, data.first_password)
             router({ to: "/" })
         } catch (e) {
-            // if (e.response.status === 500) {
             setError({ field: "", error: "Неверная почта или пароль" })
-            // } else {
-            //     setError({ field: "", error: "Другая ошибка" })
-            // }
         } finally {
             setLoading(false)
         }

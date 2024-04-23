@@ -17,7 +17,10 @@ export const checkAuthData = (body: ICheckData): ICheckDataRes | true => {
 
   if (!checkEmail(email)) return { field: "email", error: "Некорректная почта" }
 
-  if (second_password) {
+  console.log(body);
+  
+
+  if (second_password !== undefined) {
     if (first_password !== second_password) return { field: "password", error: "Пароли должны совпадать" }
   }
 

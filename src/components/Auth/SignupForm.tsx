@@ -1,8 +1,8 @@
 import { useRef, useState } from "react"
 
+import { AuthService } from "@/services/AuthService"
 import { useNavigate } from "@tanstack/react-router"
 import { Button, Input } from "antd"
-import axios from "axios"
 
 import { checkAuthData } from "@/helpers/checkAuthFormData"
 
@@ -31,16 +31,13 @@ export const SignupForm = () => {
             const isValidData = checkAuthData(data)
             if (isValidData !== true) return setError(isValidData)
 
-            const response = await axios.post("http://192.168.24.177:5000/auth/registration", { ...data, password: data.first_password })
-            localStorage.setItem("accessToken", response.data.access)
-            localStorage.setItem("refreshToken", response.data.refresh)
+            await AuthService.registration(data.email, data.first_password)
             router({ to: "/" })
         } catch (e) {
-            // if (e.response.status === 500) {
-            setError({ field: "", error: "Пользователь уже существует" })
-            // } else {
-            //     setError({ field: "", error: "Другая ошибка" })
-            // }
+            console.log(e)
+
+            // @ts-expect-error: Unreachable code error
+            setError({ field: "", error: e.response.data.message })
         } finally {
             setLoading(false)
         }

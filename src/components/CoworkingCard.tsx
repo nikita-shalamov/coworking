@@ -1,9 +1,11 @@
 import { useRef, useState } from "react"
 
-import { faChevronLeft, faChevronRight, faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Badge, Button, Carousel } from "antd"
 import { CarouselRef } from "antd/es/carousel"
+
+import { backgroundColorRating } from "@/helpers/backgroundColorRating"
 
 interface coworkingCardProps {
     title: string;
@@ -16,18 +18,6 @@ interface coworkingCardProps {
 }
 
 export default function CoworkingCard({ title, images, price, link, rating, metro, address }: coworkingCardProps) {
-    // такие функции лучше выносить в отдельную папку, она скорее всего будет переиспользоваться в разных местах
-    const backgroundColorRating = (rating: number) => {
-        if (rating <= 4 && rating >= 3) {
-            return "#faad14"
-        }
-        if (rating > 4) {
-            return "#52c41a"
-        } else {
-            return "#f5222d"
-        }
-    }
-
     const contentStyle: React.CSSProperties = {
         margin: 0,
         height: "100%",

@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router"
 import { Button } from "antd"
 
 export default function Hero() {
