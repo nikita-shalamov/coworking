@@ -51,9 +51,9 @@ export default function CoworkingList() {
                         <div className="coworking_list__items">
                             <SearchForm />
                             <h1 className={"coworking_list__title title"}>Список коворкингов</h1>
-                            {coworkings.map(coworking => {
-                                return <CoworkingCard key={coworking.id} {...coworking} />
-                            })}
+                            {coworkings.map(coworking => (
+                                <CoworkingCard key={coworking.id} {...coworking} />
+                            ))}
                         </div>
                     </div>
                 </div>
