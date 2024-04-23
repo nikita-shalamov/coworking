@@ -8,6 +8,7 @@ import { Badge, Button } from "antd"
 import { Galleria } from "primereact/galleria"
 
 import BookingForm from "./BookingForm"
+import Feedback from "./Feedback"
 
 interface coworkingPageProps {
     coworkingIndex: number;
@@ -30,6 +31,7 @@ export default function CoworkingPage({ coworkingIndex }: coworkingPageProps) {
         rating: 4,
         metro: "м. Крестовский остров",
         address: "ул. Морской просп., 25",
+        feedbackCounter: 3,
     }
 
     const [isFavorite, setIsFavorite] = useState(false) // Состояние для отслеживания статуса избранного
@@ -142,7 +144,12 @@ export default function CoworkingPage({ coworkingIndex }: coworkingPageProps) {
                         </div>
                         <div className="coworking_page__col">
                             <div className="coworking_page__col_content">
-                                <Badge className="coworking_raiting" count={"Рейтинг: " + data.rating + " / 5"} style={{ backgroundColor: backgroundColorRating(data.rating) }} />
+                                <div className="coworking_raiting__wrapper">
+                                    <a href="#" className="coworking_raiting__feedback">
+                                        Отзывы: {data.feedbackCounter}
+                                    </a>
+                                    <Badge className="coworking_raiting" count={"Рейтинг: " + data.rating + " / 5"} style={{ backgroundColor: backgroundColorRating(data.rating) }} />
+                                </div>
                                 <div className="coworking_card-info">
                                     <h1 className="coworking_page__title">{data.title}</h1>
                                     <div className="coworking_card-price">Стоимость за час: от {data.price.toFixed(2)}р.</div>
@@ -186,6 +193,7 @@ export default function CoworkingPage({ coworkingIndex }: coworkingPageProps) {
                             </YMaps>
                         </div>
                     </div>
+                    <Feedback />
                 </div>
             </div>
         </div>
