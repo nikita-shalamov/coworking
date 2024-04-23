@@ -1,6 +1,9 @@
+import { useNavigate } from "@tanstack/react-router"
 import { Button } from "antd"
 
 export default function Hero() {
+    const router = useNavigate({ from: "/login" })
+
     return (
         <div className="hero">
             <div className="container">
@@ -9,7 +12,7 @@ export default function Hero() {
                         <div className="hero__title">
                             <span>Забронировать коворкинг</span> стало легче!
                         </div>
-                        <Button href="/coworkings" className="hero__button" type="primary">
+                        <Button onClick={() => router({ to: "/coworkings" })} className="hero__button" type="primary">
                             Выбирать!
                         </Button>
                         <div className="hero__arrow_message">

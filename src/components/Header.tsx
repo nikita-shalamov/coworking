@@ -1,10 +1,12 @@
+import { useCallback } from "react"
+
 import { Link } from "@tanstack/react-router"
 import { Button } from "antd"
 
-export default function Header() {
-    const profile = false
+const isLogin = false
 
-    function checkProfile(profile: boolean) {
+export default function Header() {
+    const checkProfile = useCallback((profile: boolean) => {
         if (!profile) {
             return (
                 <div className="header__auth">
@@ -29,7 +31,7 @@ export default function Header() {
                 </div>
             )
         }
-    }
+    }, [])
 
     return (
         <div className="header">
@@ -49,7 +51,7 @@ export default function Header() {
                             Для бизнеса
                         </Link>
                     </div>
-                    {checkProfile(profile)}
+                    {checkProfile(isLogin)}
                 </div>
             </div>
         </div>
