@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as RootImport } from './routes/_root'
 import { Route as AuthImport } from './routes/_auth'
+import { Route as RootCoworkingCoworkingIdImport } from './routes/_root/coworking/$coworkingId'
 
 // Create Virtual Routes
 
@@ -23,7 +24,6 @@ const RootIndexLazyImport = createFileRoute('/_root/')()
 const RootSupportLazyImport = createFileRoute('/_root/support')()
 const RootForbusinessLazyImport = createFileRoute('/_root/forbusiness')()
 const RootCoworkingsLazyImport = createFileRoute('/_root/coworkings')()
-const RootCoworkingLazyImport = createFileRoute('/_root/coworking')()
 const AuthSignupLazyImport = createFileRoute('/_auth/signup')()
 const AuthLoginLazyImport = createFileRoute('/_auth/login')()
 
@@ -68,13 +68,6 @@ const RootCoworkingsLazyRoute = RootCoworkingsLazyImport.update({
   import('./routes/_root/coworkings.lazy').then((d) => d.Route),
 )
 
-const RootCoworkingLazyRoute = RootCoworkingLazyImport.update({
-  path: '/coworking',
-  getParentRoute: () => RootRoute,
-} as any).lazy(() =>
-  import('./routes/_root/coworking.lazy').then((d) => d.Route),
-)
-
 const AuthSignupLazyRoute = AuthSignupLazyImport.update({
   path: '/signup',
   getParentRoute: () => AuthRoute,
@@ -84,6 +77,11 @@ const AuthLoginLazyRoute = AuthLoginLazyImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any).lazy(() => import('./routes/_auth/login.lazy').then((d) => d.Route))
+
+const RootCoworkingCoworkingIdRoute = RootCoworkingCoworkingIdImport.update({
+  path: '/coworking/$coworkingId',
+  getParentRoute: () => RootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -109,10 +107,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupLazyImport
       parentRoute: typeof AuthImport
     }
-    '/_root/coworking': {
-      preLoaderRoute: typeof RootCoworkingLazyImport
-      parentRoute: typeof RootImport
-    }
     '/_root/coworkings': {
       preLoaderRoute: typeof RootCoworkingsLazyImport
       parentRoute: typeof RootImport
@@ -129,6 +123,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RootIndexLazyImport
       parentRoute: typeof RootImport
     }
+    '/_root/coworking/$coworkingId': {
+      preLoaderRoute: typeof RootCoworkingCoworkingIdImport
+      parentRoute: typeof RootImport
+    }
   }
 }
 
@@ -137,11 +135,11 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   AuthRoute.addChildren([AuthLoginLazyRoute, AuthSignupLazyRoute]),
   RootRoute.addChildren([
-    RootCoworkingLazyRoute,
     RootCoworkingsLazyRoute,
     RootForbusinessLazyRoute,
     RootSupportLazyRoute,
     RootIndexLazyRoute,
+    RootCoworkingCoworkingIdRoute,
   ]),
   ProfileLazyRoute,
 ])

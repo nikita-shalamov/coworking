@@ -1,4 +1,4 @@
-export default function CoworkingList() {
+export default function CoworkingItems() {
     return (
         <div className="coworking_list">
             <div className="container">
