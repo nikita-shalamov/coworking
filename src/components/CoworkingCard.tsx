@@ -38,6 +38,7 @@ export default function CoworkingCard({ title, images, price, link, rating, metr
     const cardOpen = () => {
         console.log(5)
     }
+
     return (
         <div className="coworking_card">
             <div className="coworking_card_click_elem" onClick={cardOpen}></div>

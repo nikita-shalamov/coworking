@@ -1,0 +1,75 @@
+.coworking_page
+    margin-top: 40px
+    &__content
+        @apply flex justify-start gap-6 mt-4
+    &__col
+        &:nth-child(1)
+            widht: 100%
+            height: auto
+        &:nth-child(2)
+            min-width: 500px
+            height: auto
+            display: flex
+            align-items: flex-start
+            justify-content: space-between
+            flex-direction: column
+            gap: 24px
+        &_content
+            width: 100%
+            height: 50%
+            border-radius: 12px
+            box-shadow: 0px 0px 41.900001525878906px rgba(0, 2.21, 66.19, 0.14)
+            position: relative
+            @apply flex flex-col justify-between items-center
+    &__galery
+        position: relative
+        &_button_left
+            cursor: pointer
+            position: absolute
+            top: 40%
+            left: 15px
+        &_button_right
+            cursor: pointer
+            position: absolute
+            top: 40%
+            right: 15px
+    &__title
+        margin: 0
+        margin-top: 45px
+        font-size: 23px
+    &__header
+        @apply flex justify-end items-center gap-3
+    &__map
+        @apply w-full h-3/6 rounded-xl overflow-hidden
+    &__heart
+        width: 120px
+        height: 38px
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 5px
+        color: #949494
+        border: 2px #b6b6b6 solid
+        border-radius: 8px
+        background-color: #fff
+        &.active
+            border: 2px #FF4242 solid
+            color: #FF4242
+    &__share
+        width: 30px
+        height: 38px
+
+.p-galleria-item-wrapper
+    border-radius: 8px
+    overflow: hidden
+
+.p-galleria-thumbnail
+    &-next, &-prev
+        display: none
+
+.p-galleria-thumbnail-item-content
+    margin: 5px 3px
+    border-radius: 5px
+    overflow: hidden
+
