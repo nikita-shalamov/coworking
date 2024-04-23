@@ -32,7 +32,9 @@ export default function CoworkingCard({ title, images, price, link, rating, metr
         <div className="coworking_card">
             <div className="coworking_card_click_elem" onClick={cardOpen} />
             <div className="coworking_card__wrapper">
-                <Badge className="coworking_raiting" count={"Рейтинг: " + rating + " / 5"} style={{ backgroundColor: backgroundColorRating(rating) }} />
+                <div className="coworking_raiting__wrapper">
+                    <Badge className="coworking_raiting" count={"Рейтинг: " + rating + " / 5"} style={{ backgroundColor: backgroundColorRating(rating) }} />
+                </div>
                 <Galery images={images} title={title} />
                 <div className="coworking_card__col">
                     <div className="coworking_card-info">
