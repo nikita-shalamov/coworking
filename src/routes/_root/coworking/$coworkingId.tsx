@@ -53,7 +53,7 @@ const Page = () => {
                                     </div>
                                 </div>
                                 <div className="coworking_card-button__wrapper">
-                                    <Button className="coworking_card-button" type="primary" href={data.link}>
+                                    <Button className="coworking_card-button" type="primary">
                                         Забронировать
                                     </Button>
                                 </div>
