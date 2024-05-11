@@ -8,6 +8,7 @@ import { Badge, Button } from "antd"
 import { Galleria } from "primereact/galleria"
 
 import BookingForm from "./BookingForm"
+import Description from "./Description"
 import Feedback from "./Feedback"
 
 interface coworkingPageProps {
@@ -194,6 +195,7 @@ export default function CoworkingPage({ coworkingIndex }: coworkingPageProps) {
                         </div>
                     </div>
                     <Feedback />
+                    <Description />
                 </div>
             </div>
         </div>
