@@ -5,9 +5,19 @@ import { Button } from "antd"
 
 const isLogin = false
 
-export default function Header() {
+interface profileHeaderProps {
+    profileIndex: number;
+}
+
+export default function Header({ profileIndex }: profileHeaderProps) {
+    const data = {
+        id: 1,
+        profilePhoto: "../images/profile/avatar.png",
+        userName: "George",
+    }
+
     const checkProfile = useCallback((profile: boolean) => {
-        if (!profile) {
+        if (profile) {
             return (
                 <div className="header__auth">
                     <Link to="/signup">
@@ -25,9 +35,13 @@ export default function Header() {
         } else {
             return (
                 <div className="header__auth">
-                    {/* <Link to="/profile">
-                        <div className="header__profile">Profile</div>
-                    </Link> */}
+                    <div className="header__user">
+                        <Link className="header__click-elem" to="/profile"></Link>
+                        <div className="header__username">{data.userName}</div>
+                        <div className="header__user-photo">
+                            <img src={data.profilePhoto} alt="" />
+                        </div>
+                    </div>
                 </div>
             )
         }
