@@ -18,6 +18,8 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.15.15",
     "@pbe/react-yandex-maps": "^1.2.5",
+    "@tanstack/react-query": "^5.36.0",
+    "@tanstack/react-query-devtools": "^5.36.0",
     "@tanstack/react-router": "^1.27.0",
     "antd": "^5.16.1",
     "axios": "^1.6.8",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+    "@tanstack/eslint-plugin-query": "^5.35.6",
     "@tanstack/router-devtools": "^1.27.0",
     "@tanstack/router-vite-plugin": "^1.26.21",
     "@types/node": "^20.12.7",

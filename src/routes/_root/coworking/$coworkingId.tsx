@@ -1,53 +1,62 @@
-import { CoworkingService } from "@/services/CoworkingService"
+import { useCoworking } from "@/hooks/useCoworkings"
 import { ExportOutlined } from "@ant-design/icons"
 import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps"
 import { createFileRoute } from "@tanstack/react-router"
 import { Badge, Button } from "antd"
 
 import { backgroundColorRating } from "@/helpers/backgroundColorRating"
+import { getMinPrice } from "@/helpers/getMinPrice"
 
 import FavoriteToggler from "@/components/CoworkingPage/FavoriteToggler"
 import Gallery from "@/components/CoworkingPage/Gallery"
 import Feedback from "@/components/Feedback"
 
 export const Route = createFileRoute("/_root/coworking/$coworkingId")({
-    loader: ({ params: { coworkingId } }) => CoworkingService.getCoworking(Number(coworkingId)),
     component: () => <Page />,
 })
 
 const Page = () => {
-    const data = Route.useLoaderData()
+    const { data, isLoading } = useCoworking(1)
+    console.log(data)
+
+    const minPrice = getMinPrice(data?.price || [])
+
+    if (isLoading || !data) return <></>
 
     return (
         <div className="coworking_page">
             <div className="container">
                 <div className="coworking_page__wrapper">
                     <div className="coworking_page__header">
-                        <FavoriteToggler id={data.id} defaultIsFavorite={data.isFavorite} />
+                        <FavoriteToggler id={data.id} defaultIsFavorite={true} />
                         <Button className="coworking_page__share" type="primary" icon={<ExportOutlined />} size="large" />
                     </div>
                     <div className="coworking_page__content">
-                        <Gallery images={data.images} />
+                        <Gallery images={data.images.map(el => el.img)} />
                         <div className="coworking_page__col">
                             <div className="coworking_page__col_content">
                                 <div className="coworking_raiting__wrapper">
                                     <a href="#" className="coworking_raiting__feedback">
-                                        Отзывы: {data.feedbackCounter}
+                                        Отзывы: {data.countRate}
                                     </a>
-                                    <Badge className="coworking_raiting" count={"Рейтинг: " + data.rating + " / 5"} style={{ backgroundColor: backgroundColorRating(data.rating) }} />
+                                    <Badge className="coworking_raiting" count={"Рейтинг: " + data.rate + " / 5"} style={{ backgroundColor: backgroundColorRating(data.rate) }} />
                                 </div>
                                 <div className="coworking_card-info">
                                     <h1 className="coworking_page__title">{data.title}</h1>
-                                    <div className="coworking_card-price">Стоимость за час: от {data.price.toFixed(2)}р.</div>
-                                    <div className="coworking_card-options">{data.conveniences.join(" · ")}</div>
+                                    <div className="coworking_card-price">Стоимость за час: от {minPrice}р.</div>
+                                    <div className="coworking_card-options">{data.conveniences.map(el => el.name).join(" · ")}</div>
                                     <div className="coworking_card-location">
-                                        <img
-                                            width="15"
-                                            height="15"
-                                            src="https://img.icons8.com/external-others-inmotus-design/67/external-Subway-metro-others-inmotus-design-14.png"
-                                            alt="external-Subway-metro-others-inmotus-design-14"
-                                        />
-                                        <div className="coworking_card-metro">{data.metro}</div>
+                                        {data.metroId && (
+                                            <>
+                                                <img
+                                                    width="15"
+                                                    height="15"
+                                                    src="https://img.icons8.com/external-others-inmotus-design/67/external-Subway-metro-others-inmotus-design-14.png"
+                                                    alt="external-Subway-metro-others-inmotus-design-14"
+                                                />
+                                                <div className="coworking_card-metro">{data?.metro?.name}</div>
+                                            </>
+                                        )}
                                         <img width="15" height="15" src="https://img.icons8.com/material-rounded/24/visit.png" alt="visit" />
                                         <div className="coworking_card-address">{data.address}</div>
                                     </div>
