@@ -1,3 +1,5 @@
+import { useCoworkingList } from "@/hooks/useCoworkingsList"
+
 import CoworkingCard from "./CoworkingCard/CoworkingCard"
 import Filters from "./Filters"
 import SearchForm from "./SearchForm"
@@ -42,6 +44,12 @@ const coworkings = [
 ]
 
 export default function CoworkingList() {
+    const { data } = useCoworkingList()
+
+    if (data) {
+        console.log("coworking", data)
+    }
+
     return (
         <>
             <div className={"coworking_list"}>

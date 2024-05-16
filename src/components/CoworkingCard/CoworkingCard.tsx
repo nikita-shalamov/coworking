@@ -26,7 +26,6 @@ export default function CoworkingCard({ title, images, price, link, rating, metr
     const cardOpen = () => {
         route({ to: '/coworking/$coworkingId', params: { coworkingId: id.toString() } })
     }
-    console.log(321)
 
     return (
         <div className="coworking_card">

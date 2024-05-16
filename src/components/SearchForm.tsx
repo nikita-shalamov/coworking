@@ -1,3 +1,4 @@
+import { useCities } from "@/hooks/useCities"
 import { Button, Input, Select, Space } from "antd"
 
 export default function SearchForm() {
@@ -37,6 +38,18 @@ export default function SearchForm() {
         },
     ]
 
+    const cities = useCities()
+    console.log(cities.data)
+
+    const filterCities =
+        cities.data &&
+        cities.data.map((city: any) => {
+            return {
+                value: city.id,
+                label: city.name, // Используем оригинальное название города для отображения
+            }
+        })
+
     const citiesWithMetro = ["москва", "санкт-петербург"]
     // Filter `option.label` match the user type `input`
     const filterOption = (input: string, option?: { label: string, value: string }) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
@@ -54,7 +67,7 @@ export default function SearchForm() {
                             onSearch={onSearch}
                             filterOption={filterOption}
                             style={{ width: "300px", height: "50px" }}
-                            options={optionsCities}
+                            options={filterCities}
                         />
                         <Select placeholder="Услуги" defaultValue="Все услуги" optionFilterProp="children" onChange={onChange} style={{ width: "300px", height: "50px" }} options={options} />
                         <Input placeholder="Введите название коворкинга" />

@@ -22,8 +22,6 @@ interface GaleryProps {
 const Galery = ({ images, title }: GaleryProps) => {
     const ref = useRef<CarouselRef>(null)
 
-    console.log(123)
-
     return (
         <div className="coworking_card__col coworking_card__col-1">
             <div className="coworking_card__carousel">
