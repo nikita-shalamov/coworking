@@ -9,6 +9,7 @@ import { getMinPrice } from "@/helpers/getMinPrice"
 
 import FavoriteToggler from "@/components/CoworkingPage/FavoriteToggler"
 import Gallery from "@/components/CoworkingPage/Gallery"
+import { SkeletonLoading } from "@/components/CoworkingPage/SkeletonLoading/SkeletonLoading"
 import Feedback from "@/components/Feedback"
 
 export const Route = createFileRoute("/_root/coworking/$coworkingId")({
@@ -16,12 +17,15 @@ export const Route = createFileRoute("/_root/coworking/$coworkingId")({
 })
 
 const Page = () => {
-    const { data, isLoading } = useCoworking(1)
+    const { coworkingId } = Route.useParams()
+    const { data, isLoading, isError } = useCoworking(Number(coworkingId))
     console.log(data)
 
     const minPrice = getMinPrice(data?.price || [])
 
-    if (isLoading || !data) return <></>
+    if (isError) return <>Коворкинг не найден</>
+
+    if (isLoading || !data) return <SkeletonLoading />
 
     return (
         <div className="coworking_page">

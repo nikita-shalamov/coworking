@@ -1,0 +1,60 @@
+.container {
+  @apply w-[1200px] mx-auto
+}
+
+.main {
+  @apply flex w-full justify-between mt-4
+}
+
+.imageBlock {
+  @apply w-[676px] flex flex-col gap-2;
+
+}
+
+.mainImage {
+  span {
+    height: 500px !important;
+    width: 676px !important;
+  };
+}
+
+.secondaryImages {
+  @apply flex justify-between gap-2;
+}
+
+.secondaryImage {
+  max-width: calc(100% / 5) !important;
+  width: calc(100% / 5) !important;
+  span {
+
+    min-width: 100% !important;
+    min-height: 100px;
+  }
+}
+
+.contentBlocks {
+  @apply w-[500px] flex flex-col gap-2
+}
+
+.contentBlock {
+  span {
+    min-width: 100% !important;
+    min-height: 300px !important;
+  }
+}
+
+.buttonContainer {
+  @apply w-full flex justify-end gap-4 mt-10;
+  .link {
+    span {
+      width: 40px !important;
+      height: 38px !important;
+    }
+  }
+  .favorite {
+    span {
+      width: 120px !important;
+      height: 38px !important;
+    }
+  }
+}
